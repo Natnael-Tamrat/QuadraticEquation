@@ -25,7 +25,7 @@ namespace QuadraticEquation
                         if (coefficient1 == 0)
                             throw new Exception("Coefficient of X-square can't be zero");
                     }
-                    catch (ArgumentException e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                         Environment.Exit(0);
