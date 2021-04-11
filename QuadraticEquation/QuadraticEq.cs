@@ -4,11 +4,11 @@ using System.Text;
 
 namespace QuadraticEquation
 {
-    class QuadraticEq
+    public class QuadraticEq
     {
 
-        private bool hasroot;
-        private bool PerfectSquare;
+        
+        
 
         private double root1;
         private double root2;
@@ -22,16 +22,16 @@ namespace QuadraticEquation
             this.coefficient2 = coefficient2;
             this.constant = constant;
         }
-       public void IsPerfectSquare()
+       public bool IsPerfectSquare()
         {
             
             //check if the quadratic function has 1 root;  B^2-(4*A*C)=0
             if (Math.Pow(coefficient2, 2) - (4 * coefficient1 * constant) == 0)
             {
-                PerfectSquare = true;
+                return true;
             }
             else
-                PerfectSquare = false;
+                return false;
         }
         public void SolvePerfectSquare()
         {
@@ -42,23 +42,23 @@ namespace QuadraticEquation
             root1 = ((-coefficient2) + Math.Sqrt(Math.Pow(coefficient2, 2) - (4 * coefficient1 * constant))) / 2 * coefficient1;
             root2 = ((-coefficient2) - Math.Sqrt(Math.Pow(coefficient2, 2) - (4 * coefficient1 * constant))) / 2 * coefficient1;
         }
-        public void hasRoot()
+        public bool hasRoot()
         {
             if (Math.Pow(coefficient2, 2) - (4 * coefficient1 * constant) < 0)
             {
-                hasroot= false;
+                return false;
             }
             else
-                hasroot= true;
+                return true;
 
         }
         public void ShowRoot()
         {
             hasRoot();
             IsPerfectSquare();
-            if (hasroot)
+            if (hasRoot())
             {
-                if (PerfectSquare)
+                if (IsPerfectSquare())
                 {
                     SolvePerfectSquare();
                     Console.WriteLine("The equation has 1 root : " + root1);
