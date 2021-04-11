@@ -10,8 +10,6 @@ namespace QuadraticEquation
         
         
 
-        private double root1;
-        private double root2;
         private double coefficient1;//coefficient of x-square
         private double coefficient2;//coefficient of x
         private double constant;//constant
@@ -33,14 +31,22 @@ namespace QuadraticEquation
             else
                 return false;
         }
-        public void SolvePerfectSquare()
+        public double SolvePerfectSquare()
         {
-            root1 = -coefficient2 /( 2 * coefficient1);
+            
+            double root1 = -coefficient2 /( 2 * coefficient1);
+           
+            return root1;
         }
-        public void SolvenonPerfectSquare()
+        public List<double> SolvenonPerfectSquare()
         {
-            root1 = ((-coefficient2) + Math.Sqrt(Math.Pow(coefficient2, 2) - (4 * coefficient1 * constant))) / 2 * coefficient1;
-            root2 = ((-coefficient2) - Math.Sqrt(Math.Pow(coefficient2, 2) - (4 * coefficient1 * constant))) / 2 * coefficient1;
+            List<double> root = new List<double>();
+           double root1 = ((-coefficient2) + Math.Sqrt(Math.Pow(coefficient2, 2) - (4 * coefficient1 * constant))) / 2 * coefficient1;
+           double root2 = ((-coefficient2) - Math.Sqrt(Math.Pow(coefficient2, 2) - (4 * coefficient1 * constant))) / 2 * coefficient1;
+            root.Add(root1);
+            root.Add(root2);
+
+            return root;
         }
         public bool hasRoot()
         {
@@ -60,13 +66,16 @@ namespace QuadraticEquation
             {
                 if (IsPerfectSquare())
                 {
-                    SolvePerfectSquare();
-                    Console.WriteLine("The equation has 1 root : " + root1);
+                    
+                    Console.WriteLine("The equation has 1 root : ");
+                    Console.WriteLine(SolvePerfectSquare());
                 }
                 else
                 {
-                    SolvenonPerfectSquare();
-                    Console.WriteLine("The equation has 2 roots : " + root1 + " and " + root2);
+                  List<double> result=  SolvenonPerfectSquare();
+                    Console.WriteLine("The equation has 2 roots : ");
+                    foreach(double x in result)
+                        Console.WriteLine(x);
                 }
             }
             else
